@@ -18154,7 +18154,7 @@ function getLocalIp() {
 
 // src/config/index.ts
 var HOST = Bun.env.HOST ?? getLocalIp();
-var PORT = Bun.env.PORT ?? 80;
+var PORT = Bun.env.PORT ?? "3000";
 
 // node_modules/@elysiajs/static/dist/index.mjs
 var import_fast_decode_uri_component5 = __toESM(require_fast_decode_uri_component2(), 1);
@@ -18619,7 +18619,7 @@ class UserService {
   createUser(id, deviceName, ip) {
     const name = generateUniqueName();
     const avatarIndex = Math.floor(Math.random() * 30);
-    const avatar = `https://paiyu.site/lan/avatars/adventurer/adventurer-${avatarIndex}.webp`;
+    const avatar = `https://${HOST}:${PORT}/avatars/adventurer/adventurer-${avatarIndex}.webp`;
     const user = {
       id,
       name,
@@ -18707,27 +18707,18 @@ var wsController = new Elysia().ws("/ws", {
 });
 
 // src/index.ts
-import path2 from "path";
-var __dirname = "/Users/hanlinfei/Code/\u524D\u7AEF/project/LAN-Transfer/server/src";
 var serverReady;
 new Elysia().use(cors()).use(staticPlugin({
   assets: "public",
   prefix: "/"
 })).use(wsController).head("/", () => new Response(null, { status: 200 })).listen({
-  port: PORT,
-  hostname: HOST,
-  tls: {
-    key: Bun.file(path2.resolve(__dirname, "../cert/server.key")),
-    cert: Bun.file(path2.resolve(__dirname, "../cert/server.crt")),
-    rejectUnauthorized: false,
-    requestCert: true
-  }
+  port: 4927,
+  hostname: "127.0.0.1"
 }, async () => {
   serverReady = Promise.resolve();
-  const ip = getLocalIp();
+  const ip = HOST;
   console.log(`Server is running at:`);
-  console.log(`- Local:   https://127.0.0.1:${PORT}`);
-  console.log(`- Network: https://${ip}:${PORT}`);
+  console.log(`  - Network: https://127.0.0.1:4927`);
 });
 export {
   serverReady

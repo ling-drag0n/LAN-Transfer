@@ -1,4 +1,4 @@
 import { getLocalIp } from "../utils/ip";
-const HOST = getLocalIp();
-const PORT = Bun.env.PORT ?? "3000";
+const HOST = Bun.env.HOST ?? getLocalIp();
+const PORT = Bun.env.PORT ?? 80;
 export { PORT, HOST };

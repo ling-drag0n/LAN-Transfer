@@ -13,7 +13,7 @@ export default defineConfig({
   base: "./",
   build: {
     outDir: path.resolve(__dirname, "../server/public"),
-    sourcemap: true,
-    minify: false,
+    sourcemap: false,
+    minify: true,
   },
 });

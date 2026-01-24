@@ -4,6 +4,7 @@ import { staticPlugin } from "@elysiajs/static";
 import { cors } from "@elysiajs/cors";
 import { wsController } from "./controllers/ws";
 import path from "path";
+import { getLocalIp } from "./utils/ip";
 
 export let serverReady: Promise<void>;
 new Elysia()
@@ -29,8 +30,9 @@ new Elysia()
     },
     async () => {
       serverReady = Promise.resolve();
-      const ip = HOST;
+      const ip = getLocalIp();
       console.log(`Server is running at:`);
-      console.log(`  - Network: https://${ip}:${PORT}`);
+      console.log(`- Local:   https://127.0.0.1:${PORT}`);
+      console.log(`- Network: https://${ip}:${PORT}`);
     },
   );

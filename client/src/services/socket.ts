@@ -6,7 +6,9 @@ export class SocketService {
   private url: string;
 
   constructor() {
-    this.url = `wss://${import.meta.env.VITE_SERVER_IP}:4927/ws`;
+    const protocol = location.protocol === "https:" ? "wss" : "ws";
+    const wsUrl = `${protocol}://${location.host}/ws`;
+    this.url = wsUrl;
   }
 
   connect() {
