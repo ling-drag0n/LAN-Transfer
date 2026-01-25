@@ -44,3 +44,8 @@ package-lock.json
 # editor
 .vscode/
 .trae/
+
+# build
+dist/
+public/assets/
+public/index.html
