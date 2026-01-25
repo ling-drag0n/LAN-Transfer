@@ -68,7 +68,7 @@ defineEmits<{
 
         <div
           v-if="currentUser && users.length > 0"
-          class="h-24 w-px bg-neutral-200/60 mx-2"
+          class="h-24 w-px bg-neutral-200/60 ml-2"
         ></div>
 
         <button
